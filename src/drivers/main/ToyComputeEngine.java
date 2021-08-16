@@ -20,7 +20,10 @@ public class ToyComputeEngine extends UnicastRemoteObject implements Compute {
 	}
 
   	public static void main(String[] args) throws RemoteException {
-	  
+		if (System.getSecurityManager() == null) {
+			System.setSecurityManager(new SecurityManager());
+		}
+		
 	  	LocateRegistry.createRegistry(1099);
 	
 	  	try {

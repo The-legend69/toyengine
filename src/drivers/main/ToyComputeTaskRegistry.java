@@ -1,5 +1,6 @@
 package drivers.main;
 
+import java.math.BigDecimal;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -10,8 +11,14 @@ public class ToyComputeTaskRegistry {
 		
 		try {
 		  Registry registry = LocateRegistry.getRegistry();
+		  ToyComputeEngine engine = new ToyComputeEngine();
 		  registry.lookup(SERVER_NAME);
 		  System.out.println("Response: Connected to server");
+			
+		  AddToyPrice task = new AddToyPrice();
+		  BigDecimal pi = engine.executeTask(task);
+			
+		  System.out.println(pi);
 	  
 		} catch (Exception err) {
 		 
